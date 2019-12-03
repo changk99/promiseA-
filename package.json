@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  },
+  "name": "testpromise",
+  "version": "1.0.0",
+  "main": "test-promise.js",
+  "dependencies": {
+  },
+  "scripts": {
+    "test": "promises-aplus-tests test-promise.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
