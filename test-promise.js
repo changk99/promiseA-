@@ -20,7 +20,7 @@ class MyPromise {
     // 关于构造函数中如果 resolve 的是一个 thenable 的对象处理,不属于 A+ 规范的内容,这里主要和原生的保持一致
     // 由于考虑到构造函数 thenable 的问题,所以 promise 的状态变化,要等对应的 thenable 对象完成后才会改变 
     // 因为是递归操作,所以在处理 thenable 对象时会多次触发 resolve 方法或者是一次 reject 方法,由于在构造函数执行时或者是执行 thenbale 对象的
-    // then 方法时,不能多次 resolve 和 reject,只有第一次会生效,当同时由于状态存在延迟改变的问题,所以不能通过简单的判断 status 来解决
+    // then 方法时,不能多次 resolve 和 reject,只有第一次会生效,但同时由于状态存在延迟改变的问题,所以不能通过简单的判断 status 来解决
     // 所以这里使用了一个 locked 来锁定状态,如果是 thenable 对象触发的,可以使用 openLock 方法暂时解锁状态
     // 由于对于 thenable 对象的触发是可以解锁状态的,对于 Promise 对象来说,resolve 封装在构造函数中,而且通过 locked 防止了多次触发,但是对于非 promise 
     // 的 thenable 对象来说,其 then 方法中还是可能触发多次 resolve 和 reject,而这些方法触发后会解锁状态导致多次触发,所以对于这些对象要在内部再多锁一层
